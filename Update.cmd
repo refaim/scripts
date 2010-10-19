@@ -21,10 +21,14 @@ echo Checking for updates...
 call :find_remote
 if %installed_version% equ %new_version% (
 echo No updates found.
-goto :eof
+goto run
 )
 echo Updates found! New version: %new_version%.
 call :update
+goto run
+
+
+:run
 echo Starting...
 cmd /C RunFar
 goto :eof
