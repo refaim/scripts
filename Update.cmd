@@ -26,7 +26,7 @@ goto :eof
 echo Updates found! New version: %new_version%.
 call :update
 echo Starting...
-start RunFar.cmd
+cmd /C RunFar
 goto :eof
 
 
