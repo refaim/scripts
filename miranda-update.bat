@@ -152,11 +152,12 @@ if %updates_found% equ "yes" (
     call :backup || exit 1
     call :update || exit 1
 
-    echo Starting...
-    pushd "%miranda%"
-    start %executable%
-    popd
 )
-
 call :cleanup
+
+echo Starting...
+pushd "%miranda%"
+start %executable%
+popd
+
 exit 0
