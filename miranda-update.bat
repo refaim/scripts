@@ -151,7 +151,6 @@ for %%p in (%*) do (
 if %updates_found% equ "yes" (
     call :backup || exit 1
     call :update || exit 1
-
 )
 call :cleanup
 
