@@ -6,6 +6,13 @@ set miranda=G:\utils\miranda
 set changelog="%miranda%\changelog.txt"
 set version_pattern="\* New in [a-z0-9\.]"
 
+goto main
+
+:delete
+    del /q %* >nul 2>&1
+    exit /b 0
+
+:main
 call :find_local
 echo Checking for updates...
 call :find_remote
@@ -49,7 +56,7 @@ set tempfile="%TEMP%\miranda-%new_version%.7z"
 echo Creating backup...
 set backupfile="backup.7z"
 pushd %miranda%
-del %backupfile% >nul 2>nul
+call :delete %backupfile%
 %sevenzip% a -r %backupfile% *.* -x!*.dat >nul 2>&1
 if errorlevel 1 (
 echo Closing Miranda...
@@ -58,7 +65,7 @@ taskkill.exe /IM miranda32.exe >nul
 popd
 
 echo Downloading...
-del /s /q "%tempdir%" %tempfile% >nul 2>&1
+call :delete /s "%tempdir%" %tempfile%
 %wget% -q -O %tempfile% %download_url%
 
 echo Extracting...
@@ -80,7 +87,7 @@ for /F %%f in ('dir /B xstatus*') do copy /Y %%f "%miranda%\icons\%%f" >nul 2>&1
 popd
 
 echo Removing temporary files...
-del /s /q "%tempdir%" %tempfile% >nul 2>&1
+call :delete /s "%tempdir%" %tempfile%
 
 echo Starting...
 pushd "%miranda%"
