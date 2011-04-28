@@ -140,6 +140,12 @@ exit /b 0
 
 
 :main
+if [%1] == [] (
+    echo Usage: miranda-update [package list]
+    echo Example: miranda-update unicode unicode-contrib
+    exit 1
+)
+
 call :check_for_running || exit 1
 call :find_miranda || exit 1
 
