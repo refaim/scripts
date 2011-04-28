@@ -9,6 +9,5 @@ if [%1] == [] (
 set src="G:\files\library\fiction\books-good"
 set dst=%disk%
 
-if errorlevel 1 exit 1
 echo Copying...
 robocopy %src% %dst% /MIR
