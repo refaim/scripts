@@ -94,7 +94,7 @@ echo Extracting...
 %sevenzip% x %tempfile% -o%tempdir% >nul 2>&1
 
 echo Updating...
-copy /Y %tempdir%\*.* %~dp0 >nul 2>&1
+copy /Y %tempdir%\*.* "%~dp0" >nul 2>&1
 
 pushd "%tempdir%\plugins"
 for /F %%f in ('dir /B') do (
