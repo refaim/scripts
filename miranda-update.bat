@@ -58,7 +58,6 @@ else (
 )
 
 
-rem get_package(name)
 :get_package
 set list=http://code.google.com/p/miranda/downloads/list
 set pattern=*%1.7z
