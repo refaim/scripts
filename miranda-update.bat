@@ -11,6 +11,7 @@ set miranda=G:\utils\miranda
 set bit=32
 set executable=miranda%bit%.exe
 set tempdir=%TEMP%\miranda
+set keep_proto_icons="yes"
 
 goto main
 
@@ -130,7 +131,12 @@ goto update_main
 echo Updating...
 copy /Y "%tempdir%\*.*" "%miranda%" >nul 2>&1
 call :accurate_dir_update plugins
+
+if %keep_proto_icons% equ "yes" (
+    call :delete "%tempdir%\icons\proto*.dll"
+)
 call :accurate_dir_update icons
+
 exit /b 0
 
 
